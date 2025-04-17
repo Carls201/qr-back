@@ -3,7 +3,7 @@ export class QrModel {
     static createQr = async (data) => {
         const client = await pool.connect();
         try {
-            const query = `INSERT INTO qr (info) VALUES ($1)`;
+            const query = `INSERT INTO qr (info, date) VALUES ($1, CURRENT_TIMESTAMP)`;
             const res = await client.query(query, [data]);
             return res;
         } catch (err) {
