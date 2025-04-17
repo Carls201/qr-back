@@ -1,10 +1,10 @@
 import { pool } from '../../db.js'
 export class QrModel {
-    static createQr = async (data) => {
+    static createQr = async (data, latitude, longitude) => {
         const client = await pool.connect();
         try {
-            const query = `INSERT INTO qr (info, date) VALUES ($1, CURRENT_TIMESTAMP)`;
-            const res = await client.query(query, [data]);
+            const query = `INSERT INTO qr (info, date, latitude, longitude) VALUES ($1, CURRENT_TIMESTAMP, $2, $3)`;
+            const res = await client.query(query, [data, latitude, longitude]);
             return res;
         } catch (err) {
             console.log(err);
