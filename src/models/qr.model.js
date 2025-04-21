@@ -17,7 +17,15 @@ export class QrModel {
     static getQrs = async () => {
         const client = await pool.connect();
         try {
-            const query = 'SELECT * FROM qr';
+            const query = `
+                 SELECT 
+        id, 
+        info, 
+        date AT TIME ZONE 'UTC' AT TIME ZONE 'America/Santiago' AS date, 
+        latitude, 
+        longitude 
+      FROM qr
+            `;
             const res = await client.query(query);
             return res.rows;
         } catch (error) {
