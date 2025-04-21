@@ -5,15 +5,11 @@ const { Pool } = pg;
 
 // Configuración CORRECTA usando connectionString
 const pool = new Pool({
-  user: 'carlos710',
-  host: 'localhost',
-  database: 'qrsdb',
-  password: 'Hola.1234@',
-  port: 5432,
-  // connectionString: process.env.DATABASE_URL,
-  // ssl: {
-  //   rejectUnauthorized: false // Necesario para Render.com y otros servicios cloud
-  // }
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 export { pool };
